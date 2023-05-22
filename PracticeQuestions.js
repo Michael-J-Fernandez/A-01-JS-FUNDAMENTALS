@@ -146,37 +146,29 @@ const initialState = {
 };
 
 const favoriteFoodsReducer = (initialState, userData) => {
-
   const state = structuredClone(initialState);
 
   for (const user of userData) {
     user.favorites.food.forEach((item) => {
       switch (item) {
         case "burgers":
-          return {
-            ...state,
-            "burgers": state["burgers"].push(user.name),
-          };
+          return state["burgers"].push(user.name);
+
         case "pizza":
-          return {
-            ...state,
-            "pizza": state["pizza"].push(user.name),
-          };
+          return state["pizza"].push(user.name);
+
         case "tacos":
-          return {
-            ...state,
-            "tacos": state["tacos"].push(user.name),
-          };
+          return state["tacos"].push(user.name);
+
         case "fried chicken":
-          return {
-            ...state,
-            "fried chicken": state["fried chicken"].push(user.name),
-          };
+          return state["fried chicken"].push(user.name);
+
         default:
           return state;
       }
     });
   }
+
   return state;
 };
 
