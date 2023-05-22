@@ -19,7 +19,7 @@ console.log(addTwoNumsPlusXArrowFn(2, 2));
 // 3. Write a function that returns another function. (use arrow functions please)
 
 const fnWithCallback = () => {
-  return innerCallback = str => str;
+  return (innerCallback = (str) => str);
 };
 
 const hello = fnWithCallback();
@@ -136,8 +136,52 @@ const likePizza = userData.reduce((pizzaLoversArr, user) => {
 console.log("!@----- 6. Users who like pizza -----@!");
 console.log(likePizza);
 
-// TODO: 7. Show an an example of a switch statement being used
+// 7. Show an an example of a switch statement being used
 
+const initialState = {
+  "burgers": [],
+  "pizza": [],
+  "tacos": [],
+  "fried chicken": [],
+};
+
+const favoriteFoodsReducer = (initialState, userData) => {
+
+  const state = structuredClone(initialState);
+
+  for (const user of userData) {
+    user.favorites.food.forEach((item) => {
+      switch (item) {
+        case "burgers":
+          return {
+            ...state,
+            "burgers": state["burgers"].push(user.name),
+          };
+        case "pizza":
+          return {
+            ...state,
+            "pizza": state["pizza"].push(user.name),
+          };
+        case "tacos":
+          return {
+            ...state,
+            "tacos": state["tacos"].push(user.name),
+          };
+        case "fried chicken":
+          return {
+            ...state,
+            "fried chicken": state["fried chicken"].push(user.name),
+          };
+        default:
+          return state;
+      }
+    });
+  }
+  return state;
+};
+
+console.log("!@----- 7. Example of switch statement -----@!");
+console.log(favoriteFoodsReducer(initialState, userData)); //?
 
 ////////////////////////////////////////////////////////////
 //// OBJECT AND ARRAY DESTRUCTURING
@@ -209,7 +253,6 @@ const [val1, val2] = food;
 console.log(val1);
 console.log(val2);
 
-
 // 13. use object destructuring and the rest operator to transform the following array into 3 variables: name, age, and food.
 //    the food variable should have all the array items starting from the third one.
 const data = ["peter", "34", "apple", "oranges", "pizza", "tacos"];
@@ -221,7 +264,6 @@ console.log("!@----- 13. Destructured array: name, age, food -----@!");
 console.log(name);
 console.log(age);
 console.log(foodItems);
-
 
 // 14. use object destructuring to grab the following from the userInfo object:
 // - The user's name and in a constant named userName.
@@ -269,8 +311,6 @@ console.log(favoriteThing);
 console.log("!@----- secondFavoriteThing -----@!");
 console.log(secondFavoriteThing);
 
-
-
 var fetchData = () =>
   new Promise((resolve, reject) => {
     console.log("fetchingData from imaginary database");
@@ -315,8 +355,8 @@ var fetchData = () =>
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 fetchData()
-  .then(resolve => console.log(resolve))
-  .catch(error => console.log(error.message))
+  .then((resolve) => console.log(resolve))
+  .catch((error) => console.log(error.message));
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 16. Call fetchData (which returns a promise) and use the async/await method to log the value the promise resolves with to the javascript console.
@@ -328,8 +368,8 @@ const asyncFunction = async () => {
     const fetchedData = await fetchData();
     console.log(fetchedData);
   } catch (error) {
-    console.log(error.message)
+    console.log(error.message);
   }
-}
+};
 
-asyncFunction()
+asyncFunction();
